@@ -19,7 +19,7 @@ export class SettingsComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder
   ) {
-    // create form group using the form builder
+    // создание группы форм с помощью конструктора форм
     this.settingsForm = this.fb.group({
       image: '',
       username: '',
@@ -27,14 +27,14 @@ export class SettingsComponent implements OnInit {
       email: '',
       password: ''
     });
-    // Optional: subscribe to changes on the form
+    // Необязательно: подпишитесь на изменения в форме
     // this.settingsForm.valueChanges.subscribe(values => this.updateUser(values));
   }
 
   ngOnInit() {
-    // Make a fresh copy of the current user's object to place in editable form fields
+    // Сделайте свежую копию объекта текущего пользователя для размещения в редактируемых полях формы
     Object.assign(this.user, this.userService.getCurrentUser());
-    // Fill the form
+    // Заполните форму
     this.settingsForm.patchValue(this.user);
   }
 
@@ -46,7 +46,7 @@ export class SettingsComponent implements OnInit {
   submitForm() {
     this.isSubmitting = true;
 
-    // update the model
+    // обновление модели
     this.updateUser(this.settingsForm.value);
 
     this.userService

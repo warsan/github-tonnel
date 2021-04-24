@@ -34,17 +34,17 @@ export class ArticleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Retreive the prefetched article
+    // Отступление от предварительно выбранной статьи
     this.route.data.subscribe(
       (data: { article: Article }) => {
         this.article = data.article;
 
-        // Load the comments on this article
+        // Загрузите комментарии к этой статье
         this.populateComments();
       }
     );
 
-    // Load the current user's data
+    // Загрузка данных текущего пользователя
     this.userService.currentUser.subscribe(
       (userData: User) => {
         this.currentUser = userData;

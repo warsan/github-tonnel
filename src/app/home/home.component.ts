@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       (authenticated) => {
         this.isAuthenticated = authenticated;
 
-        // set the article list accordingly
+        // установите список статей соответствующим образом
         if (authenticated) {
           this.setListTo('feed');
         } else {
@@ -45,13 +45,13 @@ export class HomeComponent implements OnInit {
   }
 
   setListTo(type: string = '', filters: Object = {}) {
-    // If feed is requested but user is not authenticated, redirect to login
+    // Если фид запрашивается, но пользователь не аутентифицирован, перенаправим на вход
     if (type === 'feed' && !this.isAuthenticated) {
       this.router.navigateByUrl('/login');
       return;
     }
 
-    // Otherwise, set the list object
+    // В противном случае установим объект списка
     this.listConfig = {type: type, filters: filters};
   }
 }

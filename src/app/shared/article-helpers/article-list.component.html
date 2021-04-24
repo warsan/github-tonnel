@@ -5,12 +5,12 @@
 
 <div class="app-article-preview"
   [hidden]="!loading">
-  Loading articles...
+  Загрузка статей...
 </div>
 
 <div class="app-article-preview"
   [hidden]="loading || results.length">
-  No articles are here... yet.
+  Никаких статей здесь нет... пока.
 </div>
 
 <nav [hidden]="loading || totalPages.length <= 1">

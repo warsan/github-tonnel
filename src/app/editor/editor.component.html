@@ -12,28 +12,28 @@
               <input class="form-control form-control-lg"
                 formControlName="title"
                 type="text"
-                placeholder="Article Title" />
+                placeholder="Название статьи" />
             </fieldset>
 
             <fieldset class="form-group">
               <input class="form-control"
                 formControlName="description"
                 type="text"
-                placeholder="What's this article about?" />
+                placeholder="О чем эта статья?" />
             </fieldset>
 
             <fieldset class="form-group">
               <textarea class="form-control"
                 formControlName="body"
                 rows="8"
-                placeholder="Write your article (in markdown)">
+                placeholder="Напишите свою статью (в markdown)">
               </textarea>
             </fieldset>
 
             <fieldset class="form-group">
               <input class="form-control"
                 type="text"
-                placeholder="Enter tags"
+                placeholder="Введите теги"
                 [formControl]="tagField"
                 (keyup.enter)="addTag()" />
 

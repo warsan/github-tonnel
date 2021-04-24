@@ -22,10 +22,10 @@ export class UserService {
     private jwtService: JwtService
   ) {}
 
-  // Verify JWT in localstorage with server & load user's info.
-  // This runs once on application startup.
+  // Проверьте JWT в localstorage с помощью сервера и загрузите информацию пользователя.
+  // Это выполняется один раз при запуске приложения.
   populate() {
-    // If JWT detected, attempt to get & store user's info
+    // Если JWT обнаружен, попытайтесь получить и сохранить информацию пользователя
     if (this.jwtService.getToken()) {
       this.apiService.get('/user')
       .subscribe(
@@ -33,26 +33,26 @@ export class UserService {
         err => this.purgeAuth()
       );
     } else {
-      // Remove any potential remnants of previous auth states
+      // Удалите любые потенциальные остатки предыдущих состояний аутентификации
       this.purgeAuth();
     }
   }
 
   setAuth(user: User) {
-    // Save JWT sent from server in localstorage
+    // Сохранить JWT, отправленный с сервера в localstorage
     this.jwtService.saveToken(user.token);
-    // Set current user data into observable
+    // Установите текущие пользовательские данные в наблюдаемые
     this.currentUserSubject.next(user);
-    // Set isAuthenticated to true
+    // Установите IsAuthenticated в true
     this.isAuthenticatedSubject.next(true);
   }
 
   purgeAuth() {
-    // Remove JWT from localstorage
+    // Удалить JWT из localstorage
     this.jwtService.destroyToken();
-    // Set current user to an empty object
+    // Установите текущего пользователя в пустой объект
     this.currentUserSubject.next({} as User);
-    // Set auth status to false
+    // Установите статус auth в false
     this.isAuthenticatedSubject.next(false);
   }
 
@@ -71,12 +71,12 @@ export class UserService {
     return this.currentUserSubject.value;
   }
 
-  // Update the user on the server (email, pass, etc)
+  // Обновите пользователя на сервере (email, pass, etc)
   update(user): Observable<User> {
     return this.apiService
     .put('/user', { user })
     .pipe(map(data => {
-      // Update the currentUser observable
+      // Обновите CurrentUser observable
       this.currentUserSubject.next(data.user);
       return data.user;
     }));

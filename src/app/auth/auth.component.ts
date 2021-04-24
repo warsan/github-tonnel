@@ -21,7 +21,7 @@ export class AuthComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder
   ) {
-    // use FormBuilder to create a form group
+    // используйте FormBuilder для создания группы форм
     this.authForm = this.fb.group({
       'email': ['', Validators.required],
       'password': ['', Validators.required]
@@ -30,11 +30,11 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.route.url.subscribe(data => {
-      // Get the last piece of the URL (it's either 'login' or 'register')
+      // Получите последний фрагмент URL-адреса (это либо "вход", либо "регистрация")
       this.authType = data[data.length - 1].path;
-      // Set a title for the page accordingly
+      // Установите соответствующий заголовок для страницы
       this.title = (this.authType === 'login') ? 'Sign in' : 'Sign up';
-      // add form control for username if this is the register page
+      // добавьте элемент управления формой для имени пользователя, если это страница регистрации
       if (this.authType === 'register') {
         this.authForm.addControl('username', new FormControl());
       }

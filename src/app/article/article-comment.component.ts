@@ -20,7 +20,7 @@ export class ArticleCommentComponent implements OnInit, OnDestroy {
   canModify: boolean;
 
   ngOnInit() {
-    // Load the current user's data
+    // Загрузка данных текущего пользователя
     this.subscription = this.userService.currentUser.subscribe(
       (userData: User) => {
         this.canModify = (userData.username === this.comment.author.username);

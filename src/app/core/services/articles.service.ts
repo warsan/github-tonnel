@@ -13,7 +13,7 @@ export class ArticlesService {
   ) {}
 
   query(config: ArticleListConfig): Observable<{articles: Article[], articlesCount: number}> {
-    // Convert any filters over to Angular's URLSearchParams
+    // Преобразуйте любые фильтры в URLSearchParams Angular
     const params = {};
 
     Object.keys(config.filters)
@@ -38,12 +38,12 @@ export class ArticlesService {
   }
 
   save(article): Observable<Article> {
-    // If we're updating an existing article
+    // Если мы обновляем существующую статью
     if (article.slug) {
       return this.apiService.put('/articles/' + article.slug, {article: article})
         .pipe(map(data => data.article));
 
-    // Otherwise, create a new article
+    // В противном случае создайте новую статью
     } else {
       return this.apiService.post('/articles/', {article: article})
         .pipe(map(data => data.article));
